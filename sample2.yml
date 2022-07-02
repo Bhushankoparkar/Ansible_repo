@@ -1,0 +1,15 @@
+---
+- name: playbook_2
+  hosts: localhost
+  vars:
+    URL: cloudblitzy.in
+  
+  tasks:
+      - name: print message_1
+        debug: 
+          msg: "{URL}"
+
+  vars:
+    URL: Local.cloudblitzy.in
+
+  vars_file: URL.yml
