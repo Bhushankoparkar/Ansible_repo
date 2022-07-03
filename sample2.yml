@@ -12,4 +12,4 @@
   vars:
     URL: Local.cloudblitzy.in
 
-  vars_file: URL.yml
+  vars_files: URL.yml
