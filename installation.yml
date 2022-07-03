@@ -12,8 +12,8 @@
 
 #- name: playbook_3
 # hosts: all
-#become: yes
-#tasks:
+# become: yes
+# tasks:
 #        - name: install nginx service
 #          apt:
 #                name: nginx
