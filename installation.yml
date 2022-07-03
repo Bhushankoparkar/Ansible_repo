@@ -6,7 +6,7 @@
     pkgname: nginx
   tasks:
     - name: Install nginx on ubuntu
-      action: apt name='{pkgname}' state=latest
+      action: apt name='{{pkgname}}' state=latest
 
 #      OR
 
