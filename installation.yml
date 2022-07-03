@@ -1,6 +1,7 @@
 ---
 - name: playbook_3
   hosts: all
+  become: yes
   vars: 
     pkgname: nginx
   tasks:
