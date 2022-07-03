@@ -6,8 +6,9 @@
 
     - name: Print the task_0
       debug:
-        msg: "{{ansible_selinux_python_present}}"
-      tags: 0
+        msg: "{{ansible_selinux_pythonpresent}}"
+      tags: zero
+      ignore_errors: yes
 
 
     - name: Print the task_1
