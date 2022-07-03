@@ -1,3 +1,4 @@
+---
 - name: playbook_2
   hosts: all
   gather_facts: yes
