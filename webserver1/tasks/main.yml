@@ -1,0 +1,35 @@
+---
+# tasks file for webserver
+- name: install package 
+  package:
+          name: "{{item}}"
+          state: latest
+  loop: 
+          - nginx
+          - unzip
+
+- name: download web-server_template
+  get_url:
+       url: https://www.free-css.com/assets/files/free-css-templates/download/page280/sungla.zip
+       dest: /usr/share/nginx/html
+
+- name: extracting unzip file
+  unarchive:
+        src: /usr/share/nginx/html/sungla.zip
+        dest: /usr/share/nginx/html
+        remote_src: true
+
+- name: config file copy 
+  template:
+        src: webserver1/files/ws.conf
+        dest: /etc/nginx/conf.d
+
+- name: start and enableing nginx service
+  service:
+        name: nginx
+        state: started
+        enabled: true
+
+  notify:
+        - restart nginx
+
