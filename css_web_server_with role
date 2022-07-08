@@ -1,0 +1,55 @@
+
+# role directory create:--ansible-galaxy init webserver1 <name>
+# YAML file create{ web.yml }
+# webserver create with the help of ROLE.....
+---
+- name: role playbook
+  hosts: all
+  become: yes
+  gather_facts: true
+  role:
+        - webserver1
+
+
+
+# create one configuration file and place some date/webserver1/files/ws.conf
+<virtualhost *:80>
+servername localhost
+documentroot /usr/share/nginx....<dir consist of index.html page>
+</virtualhost>
+
+
+
+# tasks file for webserver in /webserver1/tasks/main.yml
+- name: install package
+  package:
+          name: "{{item}}"
+          state: latest
+  loop:
+          - nginx
+          - unzip
+
+- name: download web-server_template
+  get_url:
+       url: https://www.free-css.com/assets/files/free-css-templates/download/page280/sungla.zip
+       dest: /usr/share/nginx/html
+
+- name: extracting unzip file
+  unarchive:
+        src: /usr/share/nginx/html/sungla.zip
+        dest: /usr/share/nginx/html
+        remote_src: true
+
+- name: config file copy
+  template:
+        src: webserver1/files/ws.conf
+        dest: /etc/nginx/conf.d
+
+- name: start and enableing nginx service
+  service:
+        name: nginx
+        state: started
+        enabled: true
+
+  notify:
+        - restart nginx
