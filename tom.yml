@@ -1,0 +1,6 @@
+---
+- name: tomcat server playbook
+  hosts: all
+  become: yes
+  roles: 
+        - tomcat_srv
