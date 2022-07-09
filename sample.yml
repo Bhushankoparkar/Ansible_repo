@@ -1,7 +1,0 @@
----
-- name: playbook_1
-  hosts: localhost
-  tasks:
-        - name: print the message
-          debug:
-            msg: hello world

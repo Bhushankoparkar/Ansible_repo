@@ -11,25 +11,20 @@
 - name: download web-server_template
   get_url:
        url: https://www.free-css.com/assets/files/free-css-templates/download/page280/sungla.zip
-       dest: /usr/share/nginx/html
+       dest: /var/www/html
 
 - name: extracting unzip file
   unarchive:
-        src: /usr/share/nginx/html/sungla.zip
-        dest: /usr/share/nginx/html
+        src: /var/www/html/sungla.zip
+        dest: /var/www/html
         remote_src: true
 
-- name: config file copy 
-  template:
-        src: webserver1/files/ws.conf
-        dest: /etc/nginx/conf.d
+- name:  copy -->>
+  shell: cp -r /var/www/html/html/* /var/www/html
 
 - name: start and enableing nginx service
-  service:
+  systemd:
         name: nginx
         state: started
         enabled: true
-
-  notify:
-        - restart nginx
-
+ 
